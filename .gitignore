@@ -1,0 +1,16 @@
+.idea
+build
+.gradle
+
+# fp-oo (most generated from leiningen)
+fp-oo/target
+# /classes
+# /checkouts
+# pom.xml
+# pom.xml.asc
+# *.jar
+# *.class
+fp-oo/.lein-*
+fp-oo/.nrepl-port
+# .hgignore
+# .hg/
