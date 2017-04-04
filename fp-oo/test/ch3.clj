@@ -1,8 +1,6 @@
 (ns ch3
   (:require [clojure.test :refer :all]))
 
-(def point {:x 1, :y 2, :__class_symbol__ 'Point})
-
 (def Point
   (fn [x y]
     {:x                x,
@@ -11,7 +9,6 @@
 
 (def x :x)
 (def y :y)
-(def class-of :__class_symbol__)
 
 (def shift
   (fn [this xinc yinc]
@@ -61,6 +58,11 @@
 (defn make [ctr & args]
   (apply ctr args))
 
+; Book solution
+;(def make
+;  (fn [type arg1 arg2]
+;    (type arg1 arg2)))
+
 (deftest make-test
   (testing "Making points   " (is (= (make Point 1 2) (Point 1 2))))
   (testing "Making triangles" (is (= (make Triangle (Point 0 0) (Point 0 1) (Point 1 0)) right-triangle)))
@@ -79,6 +81,11 @@
 ; Write a function valid-triangle? that takes three Points and returns either true or false.
 (defn valid-triangle? [p1 p2 p3]
   (distinct? p1 p2 p3))
+
+; Book solution
+;(def valid-triangle?
+;  (fn [& points]
+;    (= (distinct points) points)))
 
 (deftest equal-triangles?-test
   (testing "Valid triangle             " (is (valid-triangle? (Point 0 0) (Point 0 1) (Point 1 0))))
