@@ -1,4 +1,4 @@
-(ns ch0
+(ns ch1
   (:require [clojure.test :refer :all]))
 
 ; Define a function second that returns the second element of a list
