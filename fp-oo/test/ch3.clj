@@ -44,9 +44,9 @@
   (shift p1 (x p2) (y p2)))
 
 (deftest add-test
-  (testing "Adding points" (is (= (add-1 (Point 1 0) (Point 0 1))
-                                  (add-2 (Point 1 0) (Point 0 1))
-                                  (Point 1 1))))
+  (is (= (add-1 (Point 1 0) (Point 0 1))
+         (add-2 (Point 1 0) (Point 0 1))
+         (Point 1 1)))
   )
 
 ; Our Point function matches the way Python constructors are called. Java would use new Point and

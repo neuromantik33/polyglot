@@ -34,16 +34,16 @@
 (def point (make Point 1 2))
 
 (deftest getter-test
-  (testing "getX" (is (= (send-to point :x) 1)))
-  (testing "getY" (is (= (send-to point :y) 2)))
+  (is (= (send-to point :x) 1))
+  (is (= (send-to point :y) 2))
   )
 
 (deftest shift-test
-  (testing "shifting" (is (= (select-keys (send-to point :shift -1 -2) [:x :y]) {:x 0 :y 0})))
+  (is (= (select-keys (send-to point :shift -1 -2) [:x :y]) {:x 0 :y 0}))
   )
 
 (deftest add-test
-  (testing "adding" (is (= (select-keys (send-to point :add (make Point 1 2)) [:x :y]) {:x 2 :y 4})))
+  (is (= (select-keys (send-to point :add (make Point 1 2)) [:x :y]) {:x 2 :y 4}))
   )
 
 
