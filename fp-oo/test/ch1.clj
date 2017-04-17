@@ -6,10 +6,10 @@
   (if (< (count sequence) 2) nil (nth sequence 1)))
 
 (deftest my-second-test
-  (testing "(my-second '())    " (is (nil? (my-second '()))))
-  (testing "(my-second '(1))   " (is (nil? (my-second '(1)))))
-  (testing "(my-second '(1 2)) " (is (= (my-second '(1 2)) 2)))
-  (testing "(my-second [9 8 7])" (is (= (my-second [9 8 7]) 8)))
+  (is (nil? (my-second '())))
+  (is (nil? (my-second '(1))))
+  (is (= (my-second '(1 2)) 2))
+  (is (= (my-second [9 8 7]) 8))
   )
 
 ; Give 2 implementations of third
@@ -19,7 +19,7 @@
   (second (rest sequence)))
 
 (deftest third-test
-  (testing "(third-1 [0 1 2 3 4])" (is (= (third-1 [0 1 2 3 4]) (third-2 [0 1 2 3 4]) 2)))
+  (is (= (third-1 [0 1 2 3 4]) (third-2 [0 1 2 3 4]) 2))
   )
 
 ; Implement add-squares.
@@ -33,10 +33,10 @@
 ;    (apply + (map * numbers numbers))))
 
 (deftest add-squares-test
-  (testing "(add-squares)      " (is (= (add-squares) 0)))
-  (testing "(add-squares 1)    " (is (= (add-squares 1) 1)))
-  (testing "(add-squares 1 2)  " (is (= (add-squares 1 2) 5)))
-  (testing "(add-squares 1 2 3)" (is (= (add-squares 1 2 3) 14)))
+  (is (= (add-squares) 0))
+  (is (= (add-squares 1) 1))
+  (is (= (add-squares 1 2) 5))
+  (is (= (add-squares 1 2 3) 14))
   )
 
 ; Using range and apply, implement a bizarre version of factorial
@@ -47,10 +47,10 @@
     (apply * (range 1 (inc n)))))
 
 (deftest fact-test
-  (testing "(fact 0)" (is (= (fact 0) 1)))
-  (testing "(fact 1)" (is (= (fact 1) 1)))
-  (testing "(fact 2)" (is (= (fact 2) 2)))
-  (testing "(fact 5)" (is (= (fact 5) 120)))
+  (is (= (fact 0) 1))
+  (is (= (fact 1) 1))
+  (is (= (fact 2) 2))
+  (is (= (fact 5) 120))
   )
 
 ; Implement this function: (prefix-of? candidate sequence):
@@ -71,10 +71,10 @@
 ;       candidate)))
 
 (deftest prefix-of-test
-  (testing "(prefix-of [] [])            " (is (prefix-of? [] [])))
-  (testing "(prefix-of [1 2] [1 2 3 4])  " (is (prefix-of? [1 2] [1 2 3 4])))
-  (testing "(prefix-of '(2 3) [1 2 3 4]) " (is (not (prefix-of? '(2 3) [1 2 3 4]))))
-  (testing "(prefix-of? '(1 2) [1 2 3 4])" (is (prefix-of? '(1 2) [1 2 3 4])))
+  (is (prefix-of? [] []))
+  (is (prefix-of? [1 2] [1 2 3 4]))
+  (is (not (prefix-of? '(2 3) [1 2 3 4])))
+  (is (prefix-of? '(1 2) [1 2 3 4]))
   )
 
 ; Implement this function: (tails sequence):
@@ -104,6 +104,6 @@
 ;         (repeat (inc (count seq)) seq))))
 
 (deftest tails-test
-  (testing "(tails '())       " (is (= (tails '()) '(()))))
-  (testing "(tails '(1 2 3 4))" (is (= (tails '(1 2 3 4)) '((1 2 3 4) (2 3 4) (3 4) (4) ()))))
+  (is (= (tails '()) '(())))
+  (is (= (tails '(1 2 3 4)) '((1 2 3 4) (2 3 4) (3 4) (4) ())))
   )
