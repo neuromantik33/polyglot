@@ -77,3 +77,60 @@
     (is (= (:number error) -1))
     ))
 
+; Write a function multiples that takes a number and returns a sequence of all its non-prime multiples
+; less than 100.
+
+(defn multiples [n]
+  (range (* n 2) 101 n))
+
+(deftest multiples-test
+  (is (= (multiples 2) (range (* 2 2) 101 2)))
+  (is (= (multiples 3) (range (* 3 2) 101 3)))
+  (is (= (multiples 4) (range (* 4 2) 101 4)))
+  )
+
+; Use the Sequence monad or for (your choice!) to find all non-primes less than 100. Duplicates are OK.
+
+(require '(clojure [set :as s]))
+(def primes #{2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97})
+(def non-primes (s/difference (set (range 1 100)) primes))
+
+(defn not-prime? [n]
+  (if (= n 1)
+    true
+    (some? (some zero? (map #(rem n %) (range 2 n))))))
+
+(defn gen-non-primes [n]
+  (for [x (range 1 100)
+        :when (not-prime? x)]
+    x))
+
+; Book solution
+;(def nonprimes
+;  (for [i (range 2 11) ; You only need to try up to the square root of 100.
+;        nonprime (multiples i)]
+;    nonprime))
+;
+; Seq monad version
+;(def nonprimes
+;  (with-monad sequence-m
+;              (domonad [i (range 2 11) ; You only need to try up to the square root of 100.
+;                        nonprime (multiples i)]
+;                       nonprime)))
+
+(deftest gen-non-primes-test
+  (is (= (gen-non-primes 100) (sort non-primes)))
+  )
+
+; Use sets to calculate all the primes less than 100.
+
+(defn gen-primes [n]
+  (s/difference (set (range 1 n)) (gen-non-primes n)))
+
+; Book solution
+;(def primes
+;  (remove (set nonprimes) (range 2 101)))
+
+(deftest gen-primes-test
+  (is (= (gen-primes 100) primes))
+  )
